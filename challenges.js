@@ -270,7 +270,6 @@ formatWithPadding(1234, '*', 3); //=> "1234"
 // Your solution for 10-formatWithPadding here:
 function formatWithPadding(n, char, length) {
   if (parseInt(n.toString().length) >= parseInt(length)) {
-    console.log('first if ran')
     return n.toString()
   }
 
@@ -306,7 +305,33 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-function isPalindrome(string) {}
+function isPalindrome(string) {
+  if (string.length === 0 || string.length === 1) {
+    return true
+  } else {
+    let stringRev = []
+    string = string.split('')
+
+    const notSpace = (char) => {
+      if (char != ' ') {
+        return char
+      }
+    }
+    string = string.filter(notSpace)
+    string.map((s) => {
+      stringRev.unshift(s)
+    })
+    string = string.join('').toLowerCase()
+    stringRev = stringRev.join('').toLowerCase()
+
+    console.log(string)
+    console.log(stringRev)
+
+    string == stringRev ? true : false
+  }
+}
+
+isPalindrome('rotor')
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
