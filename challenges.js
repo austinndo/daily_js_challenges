@@ -330,8 +330,6 @@ function isPalindrome(string) {
     string == stringRev ? true : false
   }
 }
-
-isPalindrome('rotor')
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
@@ -353,7 +351,24 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-function hammingDistance(str1, str2) {}
+function hammingDistance(str1, str2) {
+  if (str1.length != str2.length) {
+    return NaN
+  }
+
+  let count = 0
+  str1 = str1.split('')
+  str2 = str2.split('')
+
+  str1.map((s, index) => {
+    if (s != str2[index]) {
+      count += 1
+    }
+  })
+
+  return count
+}
+
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
