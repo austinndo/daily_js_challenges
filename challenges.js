@@ -589,7 +589,24 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  if (n <= 1) {
+    console.log('Please enter a number greater than one.')
+  }
+
+  for (let i = 2; i < n + 1; i++) {
+    let remainder = n % i
+    // console.log(remainder, 'i:', i, 'n:', n)
+
+    if (remainder === 0 && n != i) {
+      // console.log(false)
+      return false
+    }
+  }
+
+  // console.log(true)
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
