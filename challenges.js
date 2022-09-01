@@ -612,7 +612,20 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
-function flatten(arr) {}
+function flatten(arr) {
+  let flattenedArray = []
+  const flat = (ele) => {
+    typeof ele == 'object'
+      ? ele.map((l) => {
+          flat(l)
+        })
+      : flattenedArray.push(ele)
+  }
+
+  flat(arr)
+  return flattenedArray
+}
+
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
