@@ -488,20 +488,19 @@ findHighestPriced([
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
 function findHighestPriced(arr) {
-  let highestPrice = {}
   let i = 0
+  let iHighest = 0
   let reviewSku = arr[0]
 
   arr.map((r) => {
     i = arr.indexOf(r)
-    if (r['price'] > reviewSku['price']) {
-      highestPrice = r
+    if (arr[i]['price'] > reviewSku['price']) {
+      iHighest = i
     }
     reviewSku = arr[i]
   })
 
-  console.log(highestPrice)
-  return highestPrice
+  return arr[iHighest]
 }
 
 /*-----------------------------------------------------------------
