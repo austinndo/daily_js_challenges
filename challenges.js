@@ -324,10 +324,7 @@ function isPalindrome(string) {
     string = string.join('').toLowerCase()
     stringRev = stringRev.join('').toLowerCase()
 
-    console.log(string)
-    console.log(stringRev)
-
-    string == stringRev ? true : false
+    return string == stringRev ? true : false
   }
 }
 /*-----------------------------------------------------------------
@@ -448,17 +445,15 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c:
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
 function mergeObjects(obj1, obj2) {
-  let returnObj = {}
   let args = [...arguments]
+  args = args.slice(1)
 
   args.forEach((arg) => {
-    Object.assign(returnObj, arg)
+    Object.assign(obj1, arg)
   })
 
-  console.log(returnObj)
-  return returnObj
+  return obj1
 }
-
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
@@ -578,7 +573,22 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
-function reduceArray(arr, acc, value) {}
+function reduceArray(arr, acc, value) {
+  let val = null
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i == 0) {
+      acc(value, arr[i], i)
+    }
+    let res = acc(val, arr[i], i)
+    val = res
+  }
+
+  console.log(val)
+  return val
+}
+
+// Not working with last example Yes No Yes No...
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
