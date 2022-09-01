@@ -577,17 +577,15 @@ function reduceArray(arr, acc, value) {
 
   for (let i = 0; i < arr.length; i++) {
     if (i == 0) {
-      acc(value, arr[i], i)
+      val = value
+      acc(val, arr[i], i)
     }
     let res = acc(val, arr[i], i)
     val = res
   }
-
-  console.log(val)
   return val
 }
 
-// Not working with last example Yes No Yes No...
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
