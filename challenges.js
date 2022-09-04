@@ -758,7 +758,35 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-function balancedBrackets(string) {}
+function balancedBrackets(string) {
+  brackets = string.split('')
+  let length = brackets.length
+  if (length > 2) {
+    for (let i = 0; i < length + 1; i++) {
+      brackets.map((b) => {
+        let index = brackets.indexOf(b)
+        if (
+          (b === '(' && brackets[index + 1] === ')') ||
+          (b === '{' && brackets[index + 1] === '}') ||
+          (b === '[' && brackets[index + 1] === ']')
+        ) {
+          brackets = brackets.splice(index, 2)
+        }
+      })
+    }
+  }
+  if (brackets.length == 2) {
+    if (
+      (brackets[0] === '(' && brackets[1] === ')') ||
+      (brackets[0] === '{' && brackets[1] === '}') ||
+      (brackets[0] === '[' && brackets[1] === ']')
+    ) {
+      brackets = []
+    }
+  }
+  brackets.length === 0 ? console.log(true) : console.log(false)
+}
+
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
