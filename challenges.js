@@ -685,7 +685,6 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 function primeFactors(n) {
-  //if n % i == 0 and i is prime, push i to primes array and n = n / i
   if (n < 2 || n % 1 !== 0) {
     return []
   } else {
@@ -704,8 +703,6 @@ function primeFactors(n) {
     return primes
   }
 }
-
-primeFactors(105)
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -726,7 +723,20 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let returnArray = []
+  let r = arr2
+  arr1.forEach((ele) => {
+    r.map((el) => {
+      if (ele === el) {
+        returnArray.push(ele)
+        r.splice(ele, 1)
+      }
+    })
+  })
+  return returnArray
+}
+
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
