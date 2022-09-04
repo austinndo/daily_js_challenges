@@ -982,7 +982,14 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
-function addChecker(arr, n) {}
+function addChecker(arr, n) {
+  let adds = null
+  arr.map((r) => {
+    arr.includes(n - r) ? (adds = true) : null
+  })
+  return adds === true ? true : false
+}
+
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
 
@@ -1011,6 +1018,8 @@ totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
 function totalTaskTime(arr, n) {}
+
+//second argument is how many workers you have.. can split tasks among them
 
 /*-----------------------------------------------------------------*/
 module.exports = {
