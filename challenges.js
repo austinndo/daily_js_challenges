@@ -648,21 +648,19 @@ isPrime(200) //=> false
 function isPrime(n) {
   if (n <= 1) {
     console.log('Please enter a number greater than one.')
-  }
+  } else {
+    for (let i = 2; i < n + 1; i++) {
+      let remainder = n % i
 
-  for (let i = 2; i < n + 1; i++) {
-    let remainder = n % i
-    // console.log(remainder, 'i:', i, 'n:', n)
-
-    if (remainder === 0 && n != i) {
-      // console.log(false)
-      return false
+      if (remainder === 0 && n != i) {
+        return false
+      }
     }
-  }
 
-  // console.log(true)
-  return true
+    return true
+  }
 }
+
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
@@ -686,7 +684,28 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
-function primeFactors(n) {}
+function primeFactors(n) {
+  //if n % i == 0 and i is prime, push i to primes array and n = n / i
+  if (n < 2 || n % 1 !== 0) {
+    return []
+  } else {
+    let primes = []
+    let prime = 2
+    let origN = n
+
+    for (let i = 0; i < origN; i++) {
+      if (n % prime == 0) {
+        primes.push(prime)
+        n = n / prime
+      } else {
+        prime = prime + 1
+      }
+    }
+    return primes
+  }
+}
+
+primeFactors(105)
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
