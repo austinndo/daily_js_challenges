@@ -859,7 +859,6 @@ function getNumForIP(bits) {
   bit2 = bit2 * 256 ** 2
   bit3 = bit3 * 256 ** 1
   let IP = bit1 + bit2 + bit3 + bit4
-  console.log(IP)
   return IP
 }
 
@@ -887,7 +886,18 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  string = string.split('')
+  string.forEach((s, index) => {
+    if (s === '-' || s === '_') {
+      string[index + 1] = string[index + 1].toUpperCase()
+      string.splice(index, 1)
+    }
+  })
+  string = string.join('')
+  return string
+}
+
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
