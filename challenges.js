@@ -956,7 +956,46 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  const regexp = /[U, D, L, R]/g
+  let s1 = string.match(regexp)
+  let s2 = string.split(regexp)
+  s2.shift()
+  let lCount = 0
+  let dCount = 0
+  let uCount = 0
+  let rCount = 0
+
+  s1.map((direction, index) => {
+    if (direction == 'L') {
+      lCount += parseInt(s2[index])
+    }
+    if (direction == 'D') {
+      dCount += parseInt(s2[index])
+    }
+    if (direction == 'U') {
+      uCount += parseInt(s2[index])
+    }
+    if (direction == 'R') {
+      rCount += parseInt(s2[index])
+    }
+  })
+
+  let finalObj = [{ L: -lCount }, { D: -dCount }, { U: uCount }, { R: rCount }]
+
+  let x = arr[0]
+  let y = arr[1]
+
+  let finalCoords = []
+  finalCoords.push(x + finalObj[2].U + finalObj[1].D)
+  finalCoords.push(y + finalObj[0].L + finalObj[3].R)
+
+  return finalCoords
+}
+
+gridTrip([0, 0], 'U2R1') // => [2, 1]
+gridTrip([5, 10], 'D5L15U2') //-> [2, -5]
+gridTrip([-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
