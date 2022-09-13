@@ -573,16 +573,13 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 function reduceArray(arr, acc, value) {
-  let val = null
+  let val = value
 
-  for (let i = 0; i < arr.length; i++) {
-    if (i == 0) {
-      val = value
-      acc(val, arr[i], i)
-    }
-    let res = acc(val, arr[i], i)
+  arr.forEach((arg, index) => {
+    let res = acc(val, arg, index)
     val = res
-  }
+  })
+
   return val
 }
 
@@ -646,8 +643,9 @@ isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
 function isPrime(n) {
-  if (n <= 1) {
+  if (n <= 1 || n % 1 != 0) {
     console.log('Please enter a number greater than one.')
+    return false
   } else {
     for (let i = 2; i < n + 1; i++) {
       let remainder = n % i
@@ -656,7 +654,6 @@ function isPrime(n) {
         return false
       }
     }
-
     return true
   }
 }
@@ -784,7 +781,7 @@ function balancedBrackets(string) {
       brackets = []
     }
   }
-  brackets.length === 0 ? console.log(true) : console.log(false)
+  return brackets.length === 0 ? true : false
 }
 
 /*-----------------------------------------------------------------
@@ -993,9 +990,6 @@ function gridTrip(arr, string) {
   return finalCoords
 }
 
-gridTrip([0, 0], 'U2R1') // => [2, 1]
-gridTrip([5, 10], 'D5L15U2') //-> [2, -5]
-gridTrip([-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
@@ -1056,9 +1050,34 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
-function totalTaskTime(arr, n) {}
+function totalTaskTime(arr, n) {
+  let totalTime = 0
+  let fastTask = 0
+  let work = 0
 
-//second argument is how many workers you have.. can split tasks among them
+  while (arr.length > n) {
+    work = arr.splice(0, n)
+    fastTask = work.sort((a, b) => {
+      return (a > b) - (b > a)
+    })
+
+    fastTask = fastTask[0]
+    totalTime += fastTask
+    work = work.map((task) => task - fastTask)
+    work = work.filter((task) => task)
+    arr = work.concat(arr)
+  }
+  arr = arr.sort((a, b) => {
+    return (b > a) - (a > b)
+  })
+  bottleNeck = arr[0]
+
+  if (arr.length > 0) {
+    return totalTime + bottleNeck
+  } else {
+    return totalTime
+  }
+}
 
 /*-----------------------------------------------------------------*/
 module.exports = {
